@@ -1,1 +1,1 @@
-web: vertx run app.groovy
+web: vertx run server.groovy
