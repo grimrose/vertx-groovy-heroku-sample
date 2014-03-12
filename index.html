@@ -71,14 +71,17 @@
     }
 
     function submit() {
-        var message = $("#message").val();
-        if(!message) {
-            $("#form-message").addClass("has-error");
+        var message = $("#message");
+        var form_message = $("#form-message");
+        var input = message.val();
+
+        if(!input) {
+            form_message.addClass("has-error");
             return;
-        } else {
-            $("#form-message").removeClass("has-error");
         }
-        send(message);
+        form_message.removeClass("has-error");
+        message.val("");
+        send(input);
     }
 
 </script>
