@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>Hello Vert.x</title>
+    <link href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/slate/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <div class="page-header">
+        <h1>Hello Vert.x</h1>
+    </div>
+    <div class="bs-component">
+        <div class="well">
+            <div class="form-group" id="form-message">
+                <label class="control-label" for="message">message</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="message"/>
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button" onclick="submit();">submit</button>
+                    </span>
+                </div>
+            </div>
+            <div id="received">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-1.11.0.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script>
+    var socket;
+    if (window.WebSocket) {
+        var host = $(location).attr("host");
+        socket = new WebSocket("ws://" + host + "/ws");
+        socket.onmessage = function (event) {
+            var received = $("<div></div>", {
+                "class": "alert alert-info  alert-dismissable"
+            });
+            received.append($("<button></button>", {
+                "type": "button",
+                "class": "close",
+                "data-dismiss": "alert"
+            }).text("x"));
+
+            var message = $("<p></p>").text(event.data);
+            message.appendTo(received);
+            received.appendTo($("#received"));
+        }
+        socket.onopen = function (event) {
+            console.log("open web socket.");
+        }
+        socket.onclose = function (event) {
+            console.log("close web socket.");
+        }
+    } else {
+        alert("not support web socket!");
+    }
+
+
+    function send(message) {
+        if (!window.WebSocket) {
+            return;
+        }
+        if (socket.readyState === WebSocket.OPEN) {
+            socket.send(message);
+        } else {
+            alert("web socket is not open.");
+        }
+    }
+
+    function submit() {
+        var message = $("#message").val();
+        if(!message) {
+            $("#form-message").addClass("has-error");
+            return;
+        } else {
+            $("#form-message").removeClass("has-error");
+        }
+        send(message);
+    }
+
+</script>
+</body>
+</html>
