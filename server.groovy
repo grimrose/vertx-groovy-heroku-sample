@@ -2,6 +2,7 @@ import org.vertx.groovy.core.buffer.Buffer
 import org.vertx.groovy.core.http.HttpServerRequest
 import org.vertx.groovy.core.http.RouteMatcher
 import org.vertx.groovy.core.http.ServerWebSocket
+import org.vertx.groovy.platform.Verticle
 
 RouteMatcher matcher = new RouteMatcher()
 matcher.get("/") { request ->
@@ -21,5 +22,4 @@ vertx.createHttpServer().requestHandler(matcher.asClosure()).websocketHandler { 
     } else {
         ws.reject()
     }
-}.listen(9000)
-
+}.listen(container.env['PORT']?.toString()?.toInteger()?: 9000)
