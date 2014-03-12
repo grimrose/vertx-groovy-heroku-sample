@@ -18,7 +18,7 @@ vertx.createHttpServer().requestHandler(matcher.asClosure()).websocketHandler { 
     if (ws.path == '/ws') {
         ws.dataHandler { Buffer data ->
             def message = data.toString()
-            container.logger.debug(message)
+            container.logger.info(message)
             ws.writeTextFrame(message)
         }
     } else {
