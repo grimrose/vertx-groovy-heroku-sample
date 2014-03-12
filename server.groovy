@@ -17,7 +17,9 @@ matcher.noMatch { HttpServerRequest request ->
 vertx.createHttpServer().requestHandler(matcher.asClosure()).websocketHandler { ServerWebSocket ws ->
     if (ws.path == '/ws') {
         ws.dataHandler { Buffer data ->
-            ws.writeTextFrame(data.toString())
+            def message = data.toString()
+            container.logger.debug(message)
+            ws.writeTextFrame(message)
         }
     } else {
         ws.reject()
