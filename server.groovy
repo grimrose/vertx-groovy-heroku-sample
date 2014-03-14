@@ -159,7 +159,6 @@ server.websocketHandler { ServerWebSocket ws ->
                 case ~/findAll/:
                     eb.send("messages.find", [:]) { Message message ->
                         ws.writeTextFrame(Json.encode([command: "findAll", result: message.body().results]))
-
                     }
                     break
                 default:
