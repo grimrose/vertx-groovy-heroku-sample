@@ -51,8 +51,8 @@ eb.registerHandler("messages.save") { Message message ->
                     post_at: new Date()
             ]
     ]
-    eb.send(mongoAddress, cmd) { Message reply ->
-        message.reply(reply.body())
+    eb.send(mongoAddress, cmd) { Message response ->
+        message.reply(response.body())
     }
 }
 
@@ -129,7 +129,7 @@ server.requestHandler(matcher.asClosure())
 server.websocketHandler { ServerWebSocket ws ->
     if (ws.path == '/ws') {
         ws.dataHandler { Buffer data ->
-            logger.info(data)
+            logger.info("pushed: ${data}")
             def json = new JsonSlurper().parseText(data.toString())
             switch (json.command) {
                 case ~/save/:

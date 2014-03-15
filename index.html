@@ -15,7 +15,6 @@
         <div class="well">
             <div class="form-group" id="form-message">
                 <label class="control-label" for="message">message</label>
-
                 <div class="input-group">
                     <input type="text" class="form-control" id="message"/>
                     <span class="input-group-btn">
@@ -103,11 +102,9 @@
         var panelHead = $("<div></div>", { "class": "panel-heading"}).text(new Date(result.post_at).toUTCString());
         var panelBody = $("<div></div>", { "class": "panel-body"}).text(result.content);
 
-        var panelFoot = $("<div></div>", { "class": "panel-footer"});
-
         var deleteButton = $("<button></button>", {
             "type": "button",
-            "class": "btn btn-primary"
+            "class": "btn btn-primary col-md-offset-11"
         }).on('click', {"message_id": result._id },function (event) {
             send(JSON.stringify({
                 "command": "delete",
@@ -115,11 +112,10 @@
             }));
             $(panel).remove();
         }).text("delete");
-        deleteButton.appendTo(panelFoot);
+        deleteButton.appendTo(panelBody);
 
         panelHead.appendTo(panel);
         panelBody.appendTo(panel);
-        panelFoot.appendTo(panel);
 
         panel.appendTo($("#messages"));
     }
