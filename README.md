@@ -8,7 +8,7 @@ Vert.x WebSocket Application Sample on Heroku
 
 ### ローカルで動かす場合
 
-* [Vert.x]
+#### [Vert.x]
 
 [Installation Guide]を参考にしてください。
 
@@ -17,7 +17,7 @@ Vert.x WebSocket Application Sample on Heroku
 `$ gvm install vertx`
 
 
-* [MongoDB]
+#### [MongoDB]
 
 [Install MongoDB]を参考にしてください。
 
@@ -30,7 +30,7 @@ Vert.x WebSocket Application Sample on Heroku
 ```
 
 
-* 起動
+#### 起動
 
 以下のコマンドで起動します。
 
@@ -41,7 +41,7 @@ Webブラウザで[localhost:9000](localhost:9000)にアクセスして表示さ
 
 ### Herokuで動かす場合
 
-* [Vert.x]
+#### [Vert.x]
 
 [tomaslin / heroku-buildpack-vertx-jdk7]を参考にしてください。
 
@@ -50,17 +50,17 @@ Webブラウザで[localhost:9000](localhost:9000)にアクセスして表示さ
 `$ heroku create --stack cedar --buildpack https://github.com/tomaslin/heroku-buildpack-vertx-jdk7.git`
 
 
-* [MongoDB]
+#### [MongoDB]
 
 [Adding MongoLab]を参考に追加してください。
 
 
-* WebSocket
+#### WebSocket
 
 このアプリケーションはWebSocketを利用しているので、[Heroku Labs: WebSockets]を参考に、利用できるようにします。
 
 
-* デプロイ
+#### デプロイ
 
 以下のコマンドでデプロイします。
 
